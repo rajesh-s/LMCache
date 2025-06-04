@@ -1,6 +1,5 @@
 aiofiles
 aiohttp
-infinistore
 msgspec
 numpy
 nvtx

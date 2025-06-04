@@ -33,7 +33,6 @@ from lmcache.v1.storage_backend.local_cpu_backend import LocalCPUBackend
 from .audit_connector import AuditConnector
 from .blackhole_connector import BlackholeConnector
 from .fs_connector import FSConnector
-from .infinistore_connector import InfinistoreConnector
 from .instrumented_connector import InstrumentedRemoteConnector
 from .mooncakestore_connector import MooncakestoreConnector
 
@@ -170,10 +169,6 @@ def CreateConnector(
                 raise ValueError(
                     f"LM connector only supports a single host, but got url: {url}"
                 )
-        case "infinistore":
-            host, port = parsed_url.hosts[0], parsed_url.ports[0]
-            device_name = parsed_url.query_params[0].get("device", "mlx5_0")
-            connector = InfinistoreConnector(host, port, device_name, loop)
         case "mooncakestore":
             host, port = parsed_url.hosts[0], parsed_url.ports[0]
             device_name = parsed_url.query_params[0].get("device", "")
